@@ -35,7 +35,7 @@
 		<cfreturn result />
 	</cffunction>
 	
-	<cffunction name="urlEncode" access="public" returntype="String" >
+	<cffunction name="urlEncodeNormal" access="public" returntype="String" >
 		<cfargument name="urlString" type="string" required="true" >
 		<cfset var result = replacelist(urlencodedformat(arguments.urlString), "%2D,%2E,%5F,%7E,+", "-,.,_,~,%20")/>
 		<cfreturn result />
@@ -62,7 +62,7 @@
 				<cfif listfindnocase(arguments.skipEncryption,listfirst(item,'='))>
 					<cfset stTemp[listfirst(item,'=')] = urlEncodeSpecial(listrest(item,'=')) />
 				<cfelse>
-					<cfset stTemp[listfirst(item,'=')] = urlEncode(listrest(item,'=')) />
+					<cfset stTemp[listfirst(item,'=')] = urlEncodeNormal(listrest(item,'=')) />
 				</cfif>
 			<cfelse>
 				<cfset stTemp[listfirst(item,'=')] = listrest(item,'=') />
